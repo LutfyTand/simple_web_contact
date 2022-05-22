@@ -1,0 +1,28 @@
+[
+    {
+        "firstname": "James",
+        "lastname": "Jordan",
+        "email": "James.Jordan@contact.com",
+        "phone": "62838555602"
+    }, {
+        "firstname": "Alpha",
+        "lastname": "Omega",
+        "email": "Alpha.Omega@contact.com",
+        "phone": "62819555237"
+    }, {
+        "firstname": "Dexter",
+        "lastname": "Frederick",
+        "email": "Dexter.Frederick@contact.com",
+        "phone": "62896555409"
+    }, {
+        "firstname": "William",
+        "lastname": "Luther",
+        "email": "William.Luther@contact.com",
+        "phone": "62899555629"
+    }, {
+        "firstname": "Fransisco",
+        "lastname": "Dybala",
+        "email": "Fransisco.Dybala@contact.com",
+        "phone": "62814555504"
+    }
+]

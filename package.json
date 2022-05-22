@@ -4,11 +4,18 @@
   "description": "API simple contact",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrate": "sequelize db:migrate --config config/config.js --migrations-path migrate/migrations",
+    "seed": "sequelize db:seed:all --config config/config.js --seeders-path migrate/seeders"
   },
   "author": "lutfytand",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.2",
+    "sequelize-cli": "^6.4.1"
   }
 }

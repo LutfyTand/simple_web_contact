@@ -7,11 +7,11 @@ services:
     image: web-contact
     container_name: web_contact
     ports:
-      - "80:8080"
+      - $NODE_LOCAL_PORT:$NODE_PORT
     networks:
       - simple_contact
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:$NODE_PORT/health" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -24,7 +24,33 @@ services:
         #   cpus: '0.1'
         #   memory: 128M
     restart: 'on-failure'
+    env_file: ./.env
+    environment:
+      - DB_HOST=db_contact
+      - DB_USER=$DB_USER
+      - DB_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - DB_DATABASE=$DB_DATABASE
+      - DB_PORT=$DB_PORT
+    depends_on:
+      - db_contact
+
+  db_contact:
+    image: mysql:5.7
+    container_name: db_contact
+    ports:
+      - $DB_PORT:$DB_PORT
+    networks:
+      - simple_contact
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$DB_DATABASE
+    volumes:
+      - db_contact:/var/lib/mysql
+    restart: unless-stopped
 
 networks:
     simple_contact:
         driver: bridge
+  
+volumes: 
+  db_contact:
