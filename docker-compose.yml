@@ -32,7 +32,8 @@ services:
       - DB_DATABASE=$DB_DATABASE
       - DB_PORT=$DB_PORT
     depends_on:
-      - db_contact
+      db_contact:
+        condition: service_healthy
 
   db_contact:
     image: mysql:5.7
@@ -47,6 +48,11 @@ services:
     volumes:
       - db_contact:/var/lib/mysql
     restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
     simple_contact:
